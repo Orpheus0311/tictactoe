@@ -1,3 +1,6 @@
+* I need help figuring out why the cursor position in the screen render of the tic tac toe game project won't update.
+Getting and error when I try to call 'this.setBackgroundColor()' to update cursor position background color. *
+
 # Tic-Tac-Toe
 
 In this project, you will create a command-line Tic-Tac-Toe game. To do this,
