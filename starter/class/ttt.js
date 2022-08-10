@@ -18,14 +18,34 @@ class TTT {
     Screen.setGridlines(true);
 
     // Replace this with real commands
-    Screen.addCommand('t', 'test command (remove)', TTT.testCommand);
+    //Screen.addCommand('t', 'test command (remove)', TTT.testCommand);
+    Screen.addCommand('up', 'move cursor up', TTT.moveCursorUp)
+    Screen.addCommand('down', 'move cursor down', TTT.moveCursorDown)
+    Screen.addCommand('left', 'move cursor left', TTT.moveCursorLeft)
+    Screen.addCommand('right', 'move cursor right', TTT.moveCursorRight)
 
     Screen.render();
   }
 
   // Remove this
-  static testCommand() {
-    console.log("TEST COMMAND");
+  //static testCommand() {
+  //  console.log("TEST COMMAND");
+  //}
+
+  static moveCursorUp() {
+    this.cursor.up();
+  }
+
+  static moveCursorDown() {
+    this.cursor.up();
+  }
+
+  static moveCursorLeft() {
+    this.cursor.up();
+  }
+
+  static moveCursorRight() {
+    this.cursor.up();
   }
 
   static checkWin(grid) {
