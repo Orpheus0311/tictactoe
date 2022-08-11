@@ -5,7 +5,7 @@ class TTT {
 
   constructor() {
 
-    this.playerTurn = "O";
+    this.playerTurn = "X";
 
     this.grid = [[' ',' ',' '],
                  [' ',' ',' '],
@@ -25,6 +25,7 @@ class TTT {
     Screen.addCommand('down', 'move cursor down', this.cursor.down.bind(this.cursor) )
     Screen.addCommand('left', 'move cursor left', this.cursor.left.bind(this.cursor) )
     Screen.addCommand('right', 'move cursor right', this.cursor.right.bind(this.cursor) )
+    Screen.addCommand('return', 'place move at cursor position', this.placeMove.bind(this));
 
     Screen.render();
   }
@@ -34,25 +35,38 @@ class TTT {
   //  console.log("TEST COMMAND");
   //}
 
-  // moveCursorUp() {
-  //   const func = this.cursor.up();
-  //   return func;
-  // }
+  placeMove() {
+    // set grid of current cursor position to current player token
+    console.log(`It is currently ${this.playerTurn}' move:`)
 
-  // moveCursorDown() {
-  //   const func = this.cursor.down();
-  //   return func;
-  // }
+    let row = this.cursor.row;
+    let col = this.cursor.col;
+    let gridContents = this.grid[row][col];
 
-  // moveCursorLeft() {
-  //   const func = this.cursor.left();
-  //   return func;
-  // }
+    if (gridContents === ' ') {
+      this.grid[row][col] = this.playerTurn;
+      Screen.setGrid(this.cursor.row, this.cursor.col, this.playerTurn);
 
-  // moveCursorRight() {
-  //   const func = this.cursor.right();
-  //   return func;
-  // }
+      // if we have successfully made a turn, swap player turn;
+      if (this.playerTurn === "O") {
+        this.playerTurn = "X"
+      } else {
+        this.playerTurn = "O"
+      }
+    } else {
+      console.log("You cannot overwrite another player's square!");
+
+    }
+
+    // render the new screen with the new token added
+    Screen.render();
+
+    let winner = TTT.checkWin(this.grid);
+
+    if (winner != false) {
+      TTT.endGame(winner)
+    }
+  }
 
   static checkWin(grid) {
 
