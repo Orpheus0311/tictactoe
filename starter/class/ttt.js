@@ -12,18 +12,19 @@ class TTT {
                  [' ',' ',' ']]
 
     this.cursor = new Cursor(3, 3);
-    this.cursor.setBackgroundColor();
+
 
     // Initialize a 3x3 tic-tac-toe grid
     Screen.initialize(3, 3);
     Screen.setGridlines(true);
+    this.cursor.setBackgroundColor();
 
     // Replace this with real commands
     //Screen.addCommand('t', 'test command (remove)', TTT.testCommand);
-    Screen.addCommand('up', 'move cursor up', this.cursor.up)
-    Screen.addCommand('down', 'move cursor down', this.cursor.down)
-    Screen.addCommand('left', 'move cursor left', this.cursor.left)
-    Screen.addCommand('right', 'move cursor right', this.cursor.right)
+    Screen.addCommand('up', 'move cursor up', this.cursor.up.bind(this.cursor) )
+    Screen.addCommand('down', 'move cursor down', this.cursor.down.bind(this.cursor) )
+    Screen.addCommand('left', 'move cursor left', this.cursor.left.bind(this.cursor) )
+    Screen.addCommand('right', 'move cursor right', this.cursor.right.bind(this.cursor) )
 
     Screen.render();
   }
